@@ -10,7 +10,7 @@ Every Docker container is defined by a single folder under `projects/[PREFIX]/[T
 There are 2 configuration files:
 
 - `docker-compose-files/dcf-[YOUR_CUSTOM_CTF_NAME].yml`: This file will define the docker containers that will be created. You can check an example in
-[docker-compose-files/dcf-example.yml.example]([docker-compose-files/dcf-example.yml.example). You can create your own files or you can rename that file and use it on your own way.
+[docker-compose-files/dcf-example.yml.example](docker-compose-files/dcf-example.yml.example). You can create your own files or you can rename that file and use it on your own way.
 - `config.json`: This file will define the reverse proxy configuration. This is mainly used to serve HTTP(S) requests. If you'll need this feature, you have to copy `config.json.example` to `config.json` and edit it on your own way.
 
 After you create the container's project inside `projects/[PREFIX]/[TYPE]/[ID]/` using `templates/tasks` template, you need to edit the following files based on your need:
@@ -91,9 +91,9 @@ After you create the container's project inside `projects/[PREFIX]/[TYPE]/[ID]/`
     - [ ] Selective enabled/disabled tasks (using `projects/[PREFIX]/[TYPE]/[ID]/config.json`)
 
 ### Project structure
-
+To be done
 
 
 
 ### Example
-
+To be done
