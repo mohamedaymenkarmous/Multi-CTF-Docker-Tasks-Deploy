@@ -1,0 +1,7 @@
+{
+  "prefix": "f21",
+  "type": "web",
+  "id": "1",
+  "enabled": "1",
+  "root_path": "/root"
+}

@@ -1,0 +1,64 @@
+{
+  "projects":
+  [
+    {
+      "name":"f21web1-1",
+      "target":"f21web1",
+      "description":"For CTF Example Finals",
+      "hostname":"web1.f21.ctf.example.com",
+      "generic-hostname":"web1.f21.ctf.example.com",
+      "internal-port":"21101",
+      "default-server":"0",
+      "deferred-server":"0",
+      "tls-enabled":"1"
+    },
+    {
+      "name":"f21web1-2",
+      "target":"f21web1",
+      "description":"For CTF Example Finals",
+      "hostname":"web2.f21.ctf.example.com",
+      "generic-hostname":"web1.f21.ctf.example.com",
+      "internal-port":"21102",
+      "default-server":"0",
+      "deferred-server":"0",
+      "tls-enabled":"1"
+    },
+    {
+      "name":"f21web3",
+      "target":"f21web3",
+      "description":"For CTF Example Finals",
+      "hostname":"web3.f21.ctf.example.com",
+      "generic-hostname":"web3.f21.ctf.example.com",
+      "internal-port":"21103",
+      "default-server":"0",
+      "deferred-server":"0",
+      "tls-enabled":"1"
+    }
+    {
+      "name":"f21web4",
+      "target":"f21web4",
+      "description":"For CTF Example Finals",
+      "hostname":"web4.f21.ctf.example.com",
+      "generic-hostname":"",
+      "internal-port":"21104",
+      "default-server":"0",
+      "deferred-server":"0",
+      "tls-enabled":"0"
+    }
+  ],
+  "tls":
+  [
+    {
+      "hostnames":"web1.f21.ctf.example.com web2.f21.ctf.example.com",
+      "description":"For CTF Example Finals",
+      "email":"admin@example.com",
+      "setup":"1"
+    },
+    {
+      "hostnames":"web3.f21.ctf.example.com",
+      "description":"For CTF Example Finals",
+      "email":"admin@example.com",
+      "setup":"0"
+    }
+  ]
+}

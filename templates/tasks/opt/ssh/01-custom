@@ -1,0 +1,4 @@
+#!/bin/bash
+echo -en "\nDISCLAIMER: Please don't abuse the server or you will get banned !\n\n"
+echo -en "Contact the CTF administrators for any problems; GL & HF\n\n"
+

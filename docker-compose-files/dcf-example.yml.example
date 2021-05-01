@@ -1,0 +1,101 @@
+version: '2.1'
+
+services:
+  f21web1:
+    container_name: f21web1
+    image: f21web1
+    build: ../projects/f21/web/1
+    environment:
+      # 21=year_2021, 1=finals, 01=port_01
+      - PORT1=21101
+      # 21=year_2021, 1=finals, 01=port_02
+      - PORT1=21102
+    ports:
+      # Task 1 - accessible through the reverse proxy
+      - '127.0.0.1:21101:21101'
+      # Task 2 - accessible through the reverse proxy
+      - '127.0.0.1:21102:21102'
+    volumes:
+       - ../projects/f21/web/1/home:/home:ro
+       - ../projects/f21/web/1/setup:/root/setup:ro
+       - ../projects/f21/web/1/sbin:/root/sbin:ro
+       - ../projects/f21/web/1/bin:/opt/bin:ro
+       - ../projects/f21/web/1/build:/root/build:ro
+       # Web tasks
+       - ../projects/f21/web/1/www:/var/www/html:ro
+       # Task 1: Flask with a writable folder .venv
+       - ../projects/f21/web/1/tmp/task1/.venv:/home/task1/.venv:rw
+       # Task 2: PHP with an Nginx and PHP-FPM setup
+       - ../projects/f21/web/1/setup/setup-task/task2/nginx/task.conf:/etc/nginx/sites-enabled/task2.conf:ro
+       - ../projects/f21/web/1/setup/setup-task/task2/php-fpm:/opt/php-fpm/task2:ro
+    #cap_drop:
+    #  - ALL
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 100M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
+    networks:
+      default:
+      internal:
+    dns:
+        - 8.8.8.8
+        - 1.1.1.1
+
+  f21pwn1:
+    container_name: f21pwn1
+    image: f21pwn1
+    build: ../projects/f21/pwn/1
+    environment:
+      # 21=year_2021, 1=finals, 01=port_21
+      - PORT1=21121
+      # 21=year_2021, 1=finals, 01=port_22
+      - PORT2=21122
+      # 21=year_2021, 1=finals, 01=port_23
+      - PORT3=21123
+      # 21=year_2021, 1=finals, 01=port_24
+      - PORT4=21124
+    ports:
+      # Task 1 - publicly accessible
+      - '21121:21121'
+      # Task 2 - publicly accessible
+      - '21122:21122'
+      # Task 3 - publicly accessible
+      - '21123:21123'
+      # Task 4 - publicly accessible
+      - '21124:21124'
+    volumes:
+       - ../projects/f21/pwn/1/home:/home:ro
+       - ../projects/f21/pwn/1/setup:/root/setup:ro
+       - ../projects/f21/pwn/1/sbin:/root/sbin:ro
+       - ../projects/f21/pwn/1/bin:/opt/bin:ro
+       - ../projects/f21/pwn/1/build:/root/build:ro
+    #cap_drop:
+    #  - ALL
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 100M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
+    networks:
+      default:
+    dns:
+        - 8.8.8.8
+        - 1.1.1.1
+
+networks:
+    default:
+        name: ctf_default
+    internal:
+        name: ctf_internal
+        internal: true
