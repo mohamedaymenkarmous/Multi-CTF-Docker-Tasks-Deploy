@@ -21,5 +21,5 @@ fi
 
 echo -e "${PREFIX_COLOR_SUCCESS}Stopping containers...${SUFFIX_COLOR_DEFAULT}"
 #sudo docker stop $(sudo docker ps -a -q)
-sudo docker-compose ${sum} down ${container_names}
+sudo docker-compose ${sum} stop ${container_names}
 
