@@ -89,7 +89,7 @@ After you create the container's project inside `projects/[PREFIX]/[TYPE]/[ID]/`
     - [x] Selective containers that will have their tasks restarted (using the script parameters)
     - [ ] Selective restarted tasks (using the script parameters)
     - [ ] Selective enabled/disabled tasks (using `projects/[PREFIX]/[TYPE]/[ID]/config.json`)
-  - [ ] Automated reverse proxy restart (using `5-restart-proxy.sh`)
+  - [x] Automated reverse proxy restart (using `5-restart-proxy.sh`)
 
 ### Project structure
 
@@ -108,7 +108,7 @@ After you create the container's project inside `projects/[PREFIX]/[TYPE]/[ID]/`
 | `4-renew-certificates.sh` | Bash script that will execute `2-create-new-projects-docker.sh`, `2-create-new-projects-nginx.sh` and `3-init-letsencrypt.sh` in order to update the projects in case anything is missing, then it renew the TLS certificates using certbot according to the configuration that was set in `config.json` | No |
 | `4-stop-containers.sh` | Bash script that will stop all the containers defined in `docker-compose-files/dcf-*.yml`.<br/>Execution format:<br/><ul><li>`./4-stop-containers.sh` : this will run the script over all the enabled containers and tasks with no restriction</li><li>`./4-stop-containers.sh [CONTAINER_NAME1] [CONTAINER_NAME2] [etc]` : This will run the script over the mentioned container names only.<ul><li>Example: `./4-stop-containers.sh f21web1 f21web3 f21pwn1`.</li></ul></li></ul> | No |
 | `5-restart-tasks.sh` | Bash script that will restart the services and the tasks within the Docker containers defined in `docker-compose-files/dcf-*.yml` using `projects/[PREFIX]/[TYPE]/[ID]/restart-tasks.sh`.<br/>Execution format:<br/><ul><li>`./5-restart-tasks.sh` : this will run the script over all the enabled containers and tasks with no restriction</li><li>`./5-restart-tasks.sh [CONTAINER_NAME1] [CONTAINER_NAME2] [etc]` : This will run the script over the mentioned container names only.<ul><li>Example: `./5-restart-tasks.sh f21web1 f21web3 f21pwn1`.</li></ul></li></ul>| No |
-| `5-restart-proxy.sh` | `Coming soon` | No |
+| `5-restart-proxy.sh` | `Coming soon` | Bash script that will restart the reverse proxy Docker container defined in `docker-compose-files/docker-compose-files/dcf-docker-compose-common.yml` after refreshing the Nginx and Docker configuration |
 
 #### Container structure (inside `projects/[PREFIX]/[TYPE]/[ID]/`)
 To be done
