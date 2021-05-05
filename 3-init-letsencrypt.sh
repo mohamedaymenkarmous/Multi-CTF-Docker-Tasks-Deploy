@@ -41,12 +41,11 @@ if [ "$N_TLS" == "0" ]; then
   exit 0
 fi
 # All letsencrypt configuration files should be generated before any containers starts
-for i in $(seq 1 $n);do
+for i in $(seq 1 $N_PROJECTS);do
   hostnames=$(parse_config '' "'tls'" "${i}-1" "'hostnames'")
   setup=$(parse_config '0' "'tls'" "${i}-1" "'setup'")
   email=$(parse_config '' "'tls'" "${i}-1" "'email'")
   if [ "$setup" == "1" ]; then
-
     hostname=$(echo ${hostnames} | cut -d" " -f1)
 
     echo -e "${PREFIX_COLOR_SUCCESS}Backuping the old certificate...${SUFFIX_COLOR_DEFAULT}"
@@ -73,6 +72,9 @@ for i in $(seq 1 $n);do
     echo -e "${PREFIX_COLOR_SUCCESS}Starting nginx...${SUFFIX_COLOR_DEFAULT}"
     docker-compose ${sum} up --force-recreate -d proxy
 
+    # Waiting few seconds until the service is available
+    sleep 2
+
     bad_response="0"
     for h in $hostnames; do
       http_response=$(curl --write-out '%{http_code}' --silent --output /dev/null http://$h/)
@@ -82,7 +84,7 @@ for i in $(seq 1 $n);do
       fi
     done
     if [ "$bad_response" = "1" ]; then
-      echo -e "${PREFIX_COLOR_ERROR}Please make sure that all the web services are running and then execute 6-renew-certs.sh${SUFFIX_COLOR_DEFAULT}"
+      echo -e "${PREFIX_COLOR_ERROR}Please make sure that all the web services are running and then execute 4-renew-certificates.sh${SUFFIX_COLOR_DEFAULT}"
     else
       echo -e "${PREFIX_COLOR_SUCCESS}Deleting dummy certificate for ${hostnames}...${SUFFIX_COLOR_DEFAULT}"
       docker-compose ${sum} run --rm --entrypoint "sh -c \"\
@@ -105,7 +107,7 @@ for i in $(seq 1 $n);do
       docker-compose ${sum} run --rm --entrypoint "\
         certbot certonly --config /etc/letsencrypt/${hostname}.ini --expand" certbot | tee -a ${data_path}/log/${hostname}.log
         #certbot certonly --config /etc/letsencrypt/cli.ini --test-cert --expand" certbot
-      new_file=$(cat ${data_path}/log/${hostname}.log | grep -A1 Congratulations | grep -Po '/live/\K[^\/]*')
+      new_file=$(cat ${data_path}/log/${hostname}.log | grep -A1 Congratulations | grep -Po '/live/\K[^\/]*' | tail -n1)
       if [ "${new_file}" = "${hostname}" ]; then
         echo -e "${PREFIX_COLOR_SUCCESS}Certificate created in /etc/letsencrypt/live/${hostname}${SUFFIX_COLOR_DEFAULT}"
       else
