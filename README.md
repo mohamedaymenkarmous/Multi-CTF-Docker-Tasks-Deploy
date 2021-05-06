@@ -242,8 +242,6 @@ In this section, we will explain how each parameter in `config.json` works. The 
 | `tls[].email` | Since certbot requires a valid email address to register your domains, you should not use a non-existing email or a temp-mail to avoid security issues. | "" |
 | `tls[].setup` | When you setup the web service the first time with their TLS certificates (using `tls[].setup` equals to '1'), you will certainly need to disable regenerating the TLS certificate that you just already generated (by changing `tls[].setup` to '0'). If you keep the TLS certificate enabled when you're setting up the Tasks containers. If you keep running the setup many times you will notice that generating TLS certificates frequently in a short period of time will make you spamming certbot production servers and that could blacklist the TLS setup for a while (maybe for one hour). So after generating TLS certificates the first time, you need to disable generating the already generated TLS certificates (`tls[].setup` equals to '0'). Also, if this I remember well, once the TLS certificate was generated the first time, it can't be generated again in a short period of time. Thus, you should be careful while doing this. And if you mistakenly loose the old valid TLS certificate during the regeneration, you can still find it in one of the backup folders `data/certbot/live/[HOSTNAME].bak.[TIMESTAMP]`. | "" |
 
-To be done
-
 ## Reporting an issue or a feature request
 
 Issues and feature requests are tracked in the Github [issue tracker](https://github.com/mohamedaymenkarmous/Multi-CTF-Docker-Tasks-Deploy/issues).
