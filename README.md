@@ -25,7 +25,7 @@ After you create the container's project inside `projects/[PREFIX]/[TYPE]/[ID]/`
 
 ## Notice
 
-Please read carefully the TLS certificate setup and how it works before you abuse the certbot servers with the continuous TLS setup (when `config/json`:`tls[].enabled` is set to `1`) as this part is not fully automated yet.
+Please read carefully the TLS certificate setup and how it works before you abuse the certbot servers with the continuous TLS setup (when `config.json`:`tls[].enabled` is set to `1`) as this part is not fully automated yet.
 
 ## Features
 
