@@ -24,11 +24,12 @@ docker-compose --version
 
 sudo systemctl status docker
 
-sudo apt install -y nginx
-systemctl status nginx
-sudo apt-get install -y git
-git clone https://github.com/mohamedaymenkarmous/nginx-config
-sudo cp -R /etc/nginx /etc/nginx-$(date +%s).bak
-sudo mkdir /etc/nginx/ssl
-sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
-sudo cp nginx-config/conf.d/ssl_settings.conf /etc/nginx/conf.d/
+# Will be decomissionned since there is no need to locally install nginx server
+#sudo apt install -y nginx
+#systemctl status nginx
+#sudo apt-get install -y git
+#git clone https://github.com/mohamedaymenkarmous/nginx-config
+#sudo cp -R /etc/nginx /etc/nginx-$(date +%s).bak
+#sudo mkdir /etc/nginx/ssl
+#sudo openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
+#sudo cp nginx-config/conf.d/ssl_settings.conf /etc/nginx/conf.d/
