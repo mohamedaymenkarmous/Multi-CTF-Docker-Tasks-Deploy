@@ -117,3 +117,7 @@ To be done
 
 ### Example
 To be done
+
+## Reporting an issue or a feature request
+
+Issues and feature requests are tracked in the Github [issue tracker](https://github.com/mohamedaymenkarmous/Multi-CTF-Docker-Tasks-Deploy/issues).
