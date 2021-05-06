@@ -20,6 +20,9 @@ for i in $(seq 1 $N_PROJECTS);do
   hostname=$(parse_config '' "'projects'" "${i}-1" "'hostname'")
   generic_hostname=$(parse_config '' "'projects'" "${i}-1" "'generic-hostname'")
   internal_port=$(parse_config '' "'projects'" "${i}-1" "'internal-port'")
+  if [ -z "${internal_port}" ]; then
+    internal_port="80"
+  fi
   default_server=$(parse_config '' "'projects'" "${i}-1" "'default-server'")
   deferred_server=$(parse_config '' "'projects'" "${i}-1" "'deferred-server'")
   tls_enabled=$(parse_config '' "'projects'" "${i}-1" "'tls-enabled'")
